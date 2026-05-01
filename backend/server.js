@@ -13,7 +13,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: "https://team-task-manager-two-self.vercel.app",
+  origin: "*",
   credentials: true
 }));
 app.use(express.json());
