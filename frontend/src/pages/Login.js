@@ -212,7 +212,7 @@ function Login() {
         <div className="auth-card">
           <div className="auth-logo">
             <div className="auth-logo-icon">⚡</div>
-            <span className="auth-logo-text">TaskFlow</span>
+            <span className="auth-logo-text">Task Manager</span>
           </div>
           <h1 className="auth-title">Welcome back</h1>
           <p className="auth-subtitle">Sign in to your workspace</p>
