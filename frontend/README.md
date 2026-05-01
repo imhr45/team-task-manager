@@ -1,70 +1,182 @@
-# Getting Started with Create React App
+# 🚀 Team Task Manager
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack web application for managing team projects and tasks with role-based access control.
 
-## Available Scripts
+## 🌐 Live Demo
 
-In the project directory, you can run:
+- **Frontend:** https://team-task-manager-two-self.vercel.app
+- **Backend API:** https://team-task-manager-production-8ecc.up.railway.app
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📸 Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 🔐 **Authentication** — Signup & Login with JWT
+- 👑 **Role-Based Access** — Admin & Member roles
+- 📁 **Project Management** — Create & Delete projects (Admin only)
+- ✅ **Task Management** — Create, assign & track tasks
+- 👤 **User Assignment** — Assign tasks to team members
+- 📊 **Dashboard** — View total, pending, completed & overdue tasks
+- 🔴 **Overdue Detection** — Highlights overdue tasks in red
+- 🔍 **Task Filters** — Filter by All, Pending, Completed, Overdue
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠️ Tech Stack
 
-### `npm run build`
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React.js, Bootstrap |
+| Backend | Node.js, Express.js |
+| Database | MongoDB Atlas |
+| Auth | JWT (JSON Web Tokens) |
+| Deployment | Vercel (Frontend), Railway (Backend) |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ⚙️ Installation & Setup
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prerequisites
+- Node.js installed
+- MongoDB Atlas account
+- Git installed
 
-### `npm run eject`
+### 1. Clone the Repository
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+git clone https://github.com/imhr45/team-task-manager.git
+cd team-task-manager
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 2. Backend Setup
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+cd backend
+npm install
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Create `.env` file inside `backend/`:
 
-## Learn More
+```env
+MONGO_URI=your_mongodb_atlas_uri
+JWT_SECRET=your_secret_key
+PORT=5000
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Start backend:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm run dev
+```
 
-### Code Splitting
+### 3. Frontend Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+cd frontend
+npm install
+npm start
+```
 
-### Analyzing the Bundle Size
+> Make sure `frontend/src/services/api.js` has correct backend URL.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 📡 API Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Auth Routes
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/signup` | Register new user |
+| POST | `/api/auth/login` | Login user |
+| GET | `/api/auth/users` | Get all users (Protected) |
 
-### Advanced Configuration
+### Project Routes
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/projects` | Create project (Admin only) |
+| GET | `/api/projects` | Get all projects |
+| DELETE | `/api/projects/:id` | Delete project (Admin only) |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Task Routes
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/tasks` | Create task |
+| GET | `/api/tasks` | Get all tasks |
+| PUT | `/api/tasks/:id` | Update task status |
+| DELETE | `/api/tasks/:id` | Delete task |
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 👥 Role-Based Access
 
-### `npm run build` fails to minify
+| Feature | Admin | Member |
+|---------|-------|--------|
+| Create Project | ✅ | ❌ |
+| Delete Project | ✅ | ❌ |
+| Create Task | ✅ | ✅ |
+| Assign Task | ✅ | ✅ |
+| Update Task Status | ✅ | ✅ |
+| View Dashboard | ✅ | ✅ |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## 📁 Project Structure
+
+```
+team-task-manager/
+│
+├── backend/
+│   ├── config/
+│   │   └── db.js
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   ├── projectController.js
+│   │   └── taskController.js
+│   ├── middleware/
+│   │   ├── authMiddleware.js
+│   │   └── roleMiddleware.js
+│   ├── models/
+│   │   ├── User.js
+│   │   ├── Project.js
+│   │   └── Task.js
+│   ├── routes/
+│   │   ├── authRoutes.js
+│   │   ├── projectRoutes.js
+│   │   └── taskRoutes.js
+│   └── server.js
+│
+├── frontend/
+│   └── src/
+│       ├── pages/
+│       │   ├── Login.js
+│       │   ├── Signup.js
+│       │   ├── Dashboard.js
+│       │   ├── Projects.js
+│       │   └── Tasks.js
+│       ├── services/
+│       │   └── api.js
+│       └── App.js
+│
+└── README.md
+```
+
+---
+
+## 🚀 Deployment
+
+- **Frontend** deployed on [Vercel](https://vercel.com)
+- **Backend** deployed on [Railway](https://railway.app)
+- **Database** hosted on [MongoDB Atlas](https://cloud.mongodb.com)
+
+---
+
+## 👨‍💻 Developer
+
+**Himanshu Ranjan**
+- GitHub: [@imhr45](https://github.com/imhr45)
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
